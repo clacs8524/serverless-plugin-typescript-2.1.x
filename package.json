@@ -51,6 +51,7 @@
     "typescript",
     "aws lambda"
   ],
+  "homepage": "https://www.serverless.com/plugins/serverless-plugin-typescript",
   "devDependencies": {
     "@types/fs-extra": "5.0.5",
     "@types/jest": "24.0.12",
