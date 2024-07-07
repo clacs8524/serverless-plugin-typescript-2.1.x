@@ -21,6 +21,7 @@ export class TypeScriptPlugin {
   constructor(serverless: Serverless.Instance, options: Serverless.Options) {
     this.serverless = serverless
     this.options = options
+    let params = this.options.param ?? [];
 
     this.commands = {
       invoke: {
@@ -47,13 +48,21 @@ export class TypeScriptPlugin {
         await this.compileTs()
         await this.copyExtras()
         await this.copyDependencies()
-        this.watchAll()
+        for(let param of params) {
+          if(param.toString().trim()==='watch=true') {
+            this.watchAll();
+          }
+        }
       },
       'before:offline:start:init': async () => {
         await this.compileTs()
         await this.copyExtras()
         await this.copyDependencies()
-        this.watchAll()
+        for(let param of params) {
+          if(param.toString().trim()==='watch=true') {
+            this.watchAll();
+          }
+        }
       },
       'before:package:createDeploymentArtifacts': async () => {
         await this.compileTs()
