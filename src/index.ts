@@ -21,7 +21,7 @@ export class TypeScriptPlugin {
   constructor(serverless: Serverless.Instance, options: Serverless.Options) {
     this.serverless = serverless
     this.options = options
-    let params = this.options && this.options.param? this.options.param: [];
+    let params = this.options && this.options.hasOwnProperty('param')? this.options.param: [];
 
     this.commands = {
       invoke: {
